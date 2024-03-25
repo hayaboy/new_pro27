@@ -17,7 +17,7 @@
 <body>
 <table border="1"  align="center"  width="80%">
     <tr align="center"   bgcolor="lightgreen">
-      <td ><b>아이디</b></td>
+      <td ><b>아이디##</b></td>
       <td><b>비밀번호</b></td>
       <td><b>이름</b></td>
       <td><b>이메일</b></td>

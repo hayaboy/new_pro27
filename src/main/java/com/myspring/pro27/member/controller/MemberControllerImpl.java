@@ -140,18 +140,15 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 	public ModelAndView upDateMember(@ModelAttribute MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
-		String id=request.getParameter("id");
-		logger.info("수정할 id : " +id);
-		String pwd=request.getParameter("pwd");
-		String name=request.getParameter("name");
-		String email=request.getParameter("email");
-		logger.info("수정할 name : " +name);
-		
-		
-		memberVO.setId(id);
-		memberVO.setPwd(pwd);
-		memberVO.setName(name);
-		memberVO.setEmail(email);
+		/*
+		 * String id=request.getParameter("id"); logger.info("수정할 id : " +id); String
+		 * pwd=request.getParameter("pwd"); String name=request.getParameter("name");
+		 * String email=request.getParameter("email"); logger.info("수정할 name : " +name);
+		 * 
+		 * 
+		 * memberVO.setId(id); memberVO.setPwd(pwd); memberVO.setName(name);
+		 * memberVO.setEmail(email);
+		 */
 		
 		
 		memberService.updateMember(memberVO);
