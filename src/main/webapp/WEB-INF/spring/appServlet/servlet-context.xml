@@ -35,9 +35,9 @@
 
 
 	<!-- @Controller가 렌더링하기 위해 선택한 뷰를 /WEB-INF/views 디렉토리에 .jsp 리소스로 확인합니다. -->
-	<!-- 뷰리졸버 <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+	 <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
 		<beans:property name="prefix" value="/WEB-INF/views/" /> <beans:property 
-		name="suffix" value=".jsp" /> </beans:bean> -->
+		name="suffix" value=".jsp" /> </beans:bean>
 
 	<!-- 뷰리졸버를 InternalResourceViewResolver 대신 UrlBasedViewResolver(타일즈)로 대체 -->
 	<beans:bean id="viewResolver"
@@ -66,7 +66,12 @@
 
 
 
-
+   <!-- 멀티파트 리졸버 -->
+    <beans:bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+       <beans:property name="maxUploadSize" value="52428800" />
+       <beans:property name="maxInMemorySize" value="1000000" />
+       <beans:property name="defaultEncoding" value="utf-8" />
+    </beans:bean>
 
 
 

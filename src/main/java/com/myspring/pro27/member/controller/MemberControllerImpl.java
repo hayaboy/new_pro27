@@ -76,6 +76,7 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 		HttpSession session = request.getSession();
 		session.removeAttribute("member");
 		session.removeAttribute("isLogOn");
+		session.invalidate();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/member/loginForm.do");
 		return mav;
