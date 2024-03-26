@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-/*@Controller*/
+@Controller(value = "myController")
 public class MyController {
 	
 
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String  hi() throws Exception{
-		
-		return "hi1";
-	}
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String  hi() throws Exception{
+//		
+//		return "hi1";
+//	}
 	
 	
 	@RequestMapping(value = "/nana", method = RequestMethod.GET)
@@ -35,4 +35,15 @@ public class MyController {
 		return mav;
 	}
 
+	
+	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
+	public String  main() throws Exception{
+		
+		return "main";
+	}
+	
+
+	
+	
+	
 }

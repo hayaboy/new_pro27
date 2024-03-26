@@ -63,11 +63,11 @@
 
 
 	<!-- 회원 ID를 매개변수로 넣어서 그 회원 객체가 있는지 여부를 조회 -->
-	<select id="selectMemberById" resultType="memberVO"
+	<select id="loginById" resultType="memberVO"
 		parameterType="String">
 
  		<![CDATA[
-         	 	select * from t_member where id=#{id}
+         	 	select * from t_member where id=#{id} and pwd=#{pwd}
       	]]>
 
 
