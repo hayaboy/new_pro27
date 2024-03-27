@@ -14,10 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import net.coobird.thumbnailator.Thumbnails;
+
 @Controller("fileDownloadController")
 public class FileDownloadController {
 
-	private static String CURR_IMAGE_REPO_PATH = "c:\\spring\\image_repo";
+	private static String CURR_IMAGE_REPO_PATH = "c:\\spring\\image_repo2";
 
 	private static final Logger logger = LoggerFactory.getLogger(FileDownloadController.class);
 
@@ -47,29 +49,48 @@ public class FileDownloadController {
 
 		OutputStream out = response.getOutputStream();
 
-		File f = new File(downFile);
+		File file = new File(downFile);
+		
+		
+		//Thumbnail 처리
+		//확장자를 제외한 원본 이미지 파일의 이름 가져오기
+		int lastIndex=imageFileName.lastIndexOf(".");
+		
+		String fileName=imageFileName.substring(0, lastIndex);
+		
 
-// 파일에 들어갈 파일 인풋스트림객체 생성
-		FileInputStream in = new FileInputStream(f);
+		File thumbnail=new File(CURR_IMAGE_REPO_PATH+"\\"+"thumbnail" + "\\" + fileName + ".jpg");
 
+
+		if(file.exists()) {
+			thumbnail.getParentFile().mkdir();
+			Thumbnails.of(file).size(50,50).outputFormat("jpg").toFile(thumbnail);
+		}
+		
+		
+		// 파일에 들어갈 파일 인풋스트림객체 생성
+//		FileInputStream in = new FileInputStream(f);
+		FileInputStream in = new FileInputStream(thumbnail);
+		
+		byte[] buffer = new byte[1024 * 8];
 		try {
-			
+			while (true) {
+				int count = in.read(buffer);   // 버퍼에 읽어들인 문자개수
+				if (count == -1) {  // 버퍼의 마지막에 도달했는지 체크
+					break;
+				}
+
+				out.write(buffer, 0, count);
+
+			}
 		}catch(Exception e) {
 			logger.info("다운 관련 예외이나 크게 상관 없음");
 		}
 		
 		
-		byte[] buffer = new byte[1024 * 8];
+		
 
-		while (true) {
-			int count = in.read(buffer);   // 버퍼에 읽어들인 문자개수
-			if (count == -1) {  // 버퍼의 마지막에 도달했는지 체크
-				break;
-			}
-
-			out.write(buffer, 0, count);
-
-		}
+		
 
 		in.close();
 		out.close();

@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller(value = "fileUploadController")
 public class FileUploadController {
-	private static final String CURR_IMAGE_REPO_PATH = "c:\\spring\\image_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "c:\\spring\\image_repo2";
 
 	private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 
