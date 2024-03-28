@@ -5,8 +5,8 @@
 
 
 
-<!-- 인코딩 필터 대체하는 설정 -->
-  <filter>
+	<!-- 인코딩 필터 대체하는 설정 -->
+	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
@@ -19,9 +19,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-<!-- 
-다른 설정 파일을 읽어 들이는 부분과 DispatcherServlet을 매핑하는 부분
- -->
+	<!-- 다른 설정 파일을 읽어 들이는 부분과 DispatcherServlet을 매핑하는 부분 -->
 
 
 
@@ -36,6 +34,13 @@
 
 	<!-- The definition of the Root Spring Container shared by all Servlets 
 		and Filters -->
+
+	<!-- 루트 컨텍스트 설정 모든 서블릿과 필터가 공유할 수 있는 루트 스프링 컨테이너 설정으로, 공통 빈(Service, Repository(DAO), 
+		DB, log 등)을 설정 주로 View 지원을 제외한 bean을 설정 <context-param> 요소를 이용 기본 설정 파일 외에 
+		사용자가 직접 제어를 지정 -->
+
+
+
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -46,6 +51,12 @@
 
 
 	<!-- Processes application requests -->
+
+	<!-- 서블릿 컨텍스트 설정 디스패처 서블릿이 모든 요청을 받고 요청 URL을 처리하는 컨트롤러에 매핑할 수 있도록 함 <servlet> 
+		요소를 이용하여 다음과 같이 설정 -->
+
+	<!-- 서블릿 이름과 클래스 등록 -->
+
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -53,9 +64,11 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
+		<!-- 요소는 로딩하는 순서를 설정하는데, 서블릿이 여러 개일 때는 순번을 주어 로딩할 수 있게 합니다. -->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+	<!-- 서블릿 매핑 경로 패턴 설정 -->
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
